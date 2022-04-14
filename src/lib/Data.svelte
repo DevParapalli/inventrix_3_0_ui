@@ -1,5 +1,5 @@
 <script>
-    let data = [
+    export let data = [
         ['Flight', '1-22453'],
         ['Flight Time', '17m, 35s'],
         ['Longitude (E)', '79.0249091'],

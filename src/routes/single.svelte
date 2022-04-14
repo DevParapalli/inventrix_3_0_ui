@@ -2,9 +2,10 @@
     import single_image from '$lib/assets/single.png';
     import Data from '$lib/Data.svelte';
     import CodeBox from '$lib/CodeBox.svelte';
+    import { onMount } from 'svelte';
     let data = [
         ['Flight', '1-22453'],
-        ['Flight Time', '17m, 35s'],
+        ['Flight Time (sec)', '1640'],
         ['Longitude (E)', '79.0249091'],
         ['Latitude (N)', '21.0518352'],
         ['Altitude', '1242 m'],
@@ -13,19 +14,31 @@
         ['Mission State', '.inbound'],
         ['Failure Level', '!no-failure'],
         ['Zone', 'KNA143'],
-        ['Waypoint', 'B45'],
+        ['Last Waypoint', 'C29'],
+        ['Next Waypoint', 'B45'],
         ['Waypoint Status', '+nominal'],
-        ['RecoverySite', 'B45'],
-        ['Timestamp', '2022-04-16<br />13:00:04IST']
+        ['Recovery Site', 'B45'],
+        // ['Timestamp', '2022-04-16<br />13:00:04IST']
     ];
+
+    function change_values() {
+        data[3][1] = String(Number(data[3][1]) + ((Math.random() - 0.5) / 10000000));
+        data[2][1] = String(Number(data[2][1]) + ((Math.random() - 0.5) / 10000000));
+        data[1][1] = String(Number(data[1][1]) + 1)
+        data = data
+    }
     let display = Data
     // let display = CodeBox
+    onMount(() => {
+        const interval = setInterval(change_values, 1000);
+        return () => clearInterval(interval);
+    })
 </script>
 
 <section class="text-gray-400 bg-gray-900 body-font overflow-hidden min-h-screen">
     <div class="container px-5 py-4 mx-auto">
         <div class="flex flex-wrap -m-12">
-            <div class="p-12 pt-56 md:w-1/2 flex flex-col items-start">
+            <div class="p-12 pt-56 lg:w-1/2 flex flex-col items-start">
                 <img
                     src={single_image}
                     style="image-rendering: -webkit-optimize-contrast;"
@@ -33,7 +46,7 @@
                     alt="Map with marker"
                 />
             </div>
-            <div class="p-12 md:w-1/2 flex flex-col items-start">
+            <div class="p-12 lg:w-1/2 flex flex-col items-start">
                 <span
                     class="inline-block mx-auto mb-6 py-1 px-2 rounded bg-gray-800 text-gray-400 text-opacity-75 text-xs font-medium tracking-widest"
                     >IN PROGRESS</span
@@ -61,7 +74,7 @@
                         System Log
                     </button>
                 </div>
-                <svelte:component this={display} />
+                <svelte:component this={display} data="{data}" />
             </div>
         </div>
     </div>

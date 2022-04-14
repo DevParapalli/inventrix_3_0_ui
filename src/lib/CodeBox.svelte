@@ -1,3 +1,22 @@
+<script>
+  export const data = [
+        ['Flight', '1-22453'],
+        ['Flight Time (sec)', '1640'],
+        ['Longitude (E)', '79.0249091'],
+        ['Latitude (N)', '21.0518352'],
+        ['Altitude', '1242 m'],
+        ['Position', 'Roll: -24, <br />Pitch: 6, <br />Yaw: 71'],
+        ['Air Speed', '26.2 m/s'],
+        ['Mission State', '.inbound'],
+        ['Failure Level', '!no-failure'],
+        ['Zone', 'KNA143'],
+        ['Last Waypoint', 'C29'],
+        ['Next Waypoint', 'B45'],
+        ['Waypoint Status', '+nominal'],
+        ['Recovery Site', 'B45'],
+        // ['Timestamp', '2022-04-16<br />13:00:04IST']
+    ];
+</script>
 <div class="codeheader" id="codeheader_html">SYSTEM LOGS</div>
 <div id="codebox" class="text-xs">
 <pre><code class="overflow-auto" data-language="html">
